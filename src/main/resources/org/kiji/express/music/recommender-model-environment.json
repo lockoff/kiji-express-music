@@ -20,6 +20,44 @@
   "name" : "song-recommender-env",
   "version" : "1.0.0",
   "protocol_version" : "model_environment-0.2.0",
+  "train_environment":{
+    "org.kiji.express.avro.AvroTrainEnvironment":{
+      "input_spec":{
+        "user-song-plays":{
+          "kiji_specification":{
+            "org.kiji.express.avro.AvroKijiInputSpec":{
+              "table_uri":"kiji://.env/default/users",
+              "data_request":{
+                "min_timestamp":0,
+                "max_timestamp":9223372036854775807,
+                "column_definitions":[{
+                  "name":"info:track_plays",
+                  "max_versions":1000
+                }]
+              },
+              "field_bindings":[{
+                "tuple_field_name":"playlist",
+                "store_field_name":"info:track_plays"
+              }]
+            }
+          }
+        }
+      },
+      "output_spec":{
+        "top-next-songs":{
+          "kiji_specification":{
+            "org.kiji.express.avro.AvroKijiOutputSpec":{
+              "table_uri":"kiji://.env/default/songs",
+              "field_bindings":[{
+                "tuple_field_name":"top_next_songs",
+                "store_field_name":"info:top_next_songs"
+              }]
+            }
+          }
+        }
+      }
+    }
+  },
   "score_environment" : {
     "input_spec":{
       "table_uri" : "kiji://.env/default/users",

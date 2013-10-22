@@ -19,6 +19,9 @@
 {
   "name" : "song-recommender",
   "version" : "1.0.0",
+  "trainer_class" : {
+    "string" : "org.kiji.express.music.SongRecommendationTrainer"
+  },
   "scorer_phase" : {
     "org.kiji.express.avro.AvroPhaseDefinition" : {
       "extractor_class" : "org.kiji.express.modeling.lib.FirstValueExtractor",
