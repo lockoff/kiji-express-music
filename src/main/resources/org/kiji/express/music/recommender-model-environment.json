@@ -21,42 +21,32 @@
   "version" : "1.0.0",
   "protocol_version" : "model_environment-0.2.0",
   "score_environment" : {
-    "org.kiji.express.avro.AvroScoreEnvironment":{
-      "input_spec":{
-        "kiji_specification":{
-          "org.kiji.express.avro.AvroKijiInputSpec":{
-            "table_uri" : "kiji://.env/default/users",
-            "data_request" : {
-              "column_definitions" : [ {
-                "name" : "info:track_plays"
-              } ]
-            },
-            "field_bindings" : [ {
-              "tuple_field_name" : "trackPlay",
-              "store_field_name" : "info:track_plays"
-            } ]
-          }
-        }
-      },
-      "kv_stores" : [ {
-        "store_type" : "KIJI_TABLE",
-        "name" : "top_next_songs",
-        "properties" : [ {
-          "name" : "uri",
-          "value" : "kiji://.env/default/songs"
-          }, {
-          "name" : "column",
-          "value" : "info:top_next_songs"
+    "input_spec":{
+      "table_uri" : "kiji://.env/default/users",
+      "data_request" : {
+        "column_definitions" : [ {
+          "name" : "info:track_plays"
         } ]
-      } ],
-      "output_spec" : {
-        "kiji_column_specification" : {
-          "org.kiji.express.avro.AvroKijiSingleColumnOutputSpec" : {
-            "table_uri": "kiji://.env/default/users",
-            "output_column" : "info:next_song_rec"
-          }
-        }
-      }
+      },
+      "field_bindings" : [ {
+        "tuple_field_name" : "trackPlay",
+        "store_field_name" : "info:track_plays"
+      } ]
+    },
+    "kv_stores" : [ {
+      "store_type" : "KIJI_TABLE",
+      "name" : "top_next_songs",
+      "properties" : [ {
+        "name" : "uri",
+        "value" : "kiji://.env/default/songs"
+        }, {
+        "name" : "column",
+        "value" : "info:top_next_songs"
+      } ]
+    } ],
+    "output_spec" : {
+      "table_uri": "kiji://.env/default/users",
+      "output_column" : "info:next_song_rec"
     }
   }
 }
